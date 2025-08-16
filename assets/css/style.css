@@ -6,6 +6,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: 1s;
 }
 
 /***  VARIABLES & THEMES ***/
@@ -50,7 +51,15 @@
   --background-lamp-image: url("../images/backgrounds/lamps-inverted.png");
   --footer-background-color: #000;
 }
+/***  GLOBAL STYLES ***/
 
+.dark-theme button,
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3 {
+  letter-spacing: 5px;
+  font-weight: normal;
+}
 h1,
 h2,
 h3 {
@@ -59,6 +68,10 @@ h3 {
   color: var(--primary-color);
   text-transform: uppercase;
   margin-bottom: 40px;
+}
+
+.dark-theme .invert-element {
+  transform: rotateZ(180deg) scaleX(-1);
 }
 
 p {
@@ -81,6 +94,26 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   transition: background 1s;
+}
+
+input,
+textarea {
+  border: 2px solid var(--primary-color-contrast);
+  background-color: var(--field-background-color);
+  color: var(--primary-color-contrast);
+  padding: 8px;
+  margin-bottom: 24px;
+  font-size: 1rem;
+}
+
+label {
+  margin-bottom: 8px;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: black;
 }
 
 /***  HEADER ***/
@@ -160,11 +193,24 @@ header::before {
   -webkit-mask: var(--character-bottom-image-src) top / contain no-repeat; /* máscara para a imagem no Safari */
 }
 
+/***  MAIN STYLES ***/
+
 main {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+main::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: var(--page-background) no-repeat,
+    url(../images/backgrounds/florest.png) no-repeat;
+  background-size: cover;
+  z-index: -1;
 }
 
 /***  SECTIONS STYLES ***/
@@ -203,4 +249,165 @@ section {
 #section-stranger-things-trailer .section-texts h2 {
   max-width: 425px; /* para que o h2 quebre a çinha conforme o design */
   display: inline-block; /* para que o h2 respeite o alinhamento a direita */
+}
+
+#section-stranger-things-trailer .video-frame {
+  background-color: var(--primary-color);
+}
+
+#section-stranger-things-trailer .video-frame iframe {
+  position: relative;
+  bottom: 24px;
+  left: 24px;
+  border: 2px solid;
+  border-image: linear-gradient(
+    var(--primary-color),
+    var(--primary-color-contrast)
+  );
+  border-image-slice: 100; /* para que a borda tenha o gradiente */
+}
+
+/***  SECTION 3 STYLES STRANGER THINGS GALLERY ***/
+
+#section-stranger-things-gallery {
+  width: 100%;
+  justify-content: center;
+  background: var(--background-lamp-image) 120% /50% no-repeat;
+}
+
+#section-stranger-things-gallery .container {
+  width: 100%; /* para que a galeria ocupe toda a largura do container */
+}
+
+#section-stranger-things-gallery .container h2 {
+  width: 800px; /* para que o h2 quebre a linha conforme o design */
+}
+
+#section-stranger-things-gallery .gallery-container {
+  display: flex;
+  gap: 50px; /* espaçamento entre as imagens (Usado apenas em conjunto com display flex)*/
+}
+
+#section-stranger-things-gallery .gallery-image {
+  width: 250px;
+  height: 250px;
+  outline: 10px solid var(--highlight-color);
+  border: 3px solid var(--primary-color);
+  box-sizing: initial; /* faz com que o outline não aumente o tamanho da imagem */
+}
+
+#section-stranger-things-gallery .gallery-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* faz com que a imagem preencha todo o espaço do container sem distorcer */
+  border: 10px solid var(--highlight-color);
+}
+
+/***  SECTION 4 STYLES  D&D FORM ***/
+
+#section-form {
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-align: center;
+}
+
+#section-form h2 {
+  width: 600px;
+}
+
+#section-form .form-content h3 {
+  color: var(--highlight-color);
+  flex-basis: 30%; /* para que o h3 ocupe 30% do espaço disponível */
+  text-align: left;
+  margin: 0;
+}
+
+#section-form .form-content h3 span {
+  color: var(--primary-color);
+}
+
+#section-form .form-content {
+  display: flex;
+  flex-direction: space-between;
+  align-items: center;
+}
+
+#section-form .form-container {
+  flex-basis: 50%;
+  position: relative;
+}
+
+#section-form .form-container::after {
+  content: "";
+  background-color: var(--highlight-color);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: -1; /* faz com que o background fique atrás do formulário */
+}
+
+#section-form .form-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--primary-color);
+  color: var(--primary-color-contrast);
+  text-align: left;
+}
+
+#section-form .form-container form button {
+  border: none;
+  background-color: var(--field-background-color);
+  color: var(--primary-color-contrast);
+  max-width: 300px;
+  align-self: center; /* para que o botão fique centralizado */
+}
+
+#section-form .form-container form button:hover {
+  background-color: var(--primary-color-contrast);
+  color: var(--field-background-color);
+}
+
+/***  FOOTER STYLES ***/
+footer {
+  padding: 60px 0;
+  background-color: var(--footer-background-color);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; /* faz com que a imagem de fundo respeite a limitação do footer */
+  overflow: hidden; /* para que a imagem de fundo não ultrapasse os limites do footer */
+}
+
+footer p {
+  max-width: 700px;
+  margin-bottom: 24px;
+}
+
+footer::before,
+footer::after {
+  content: "";
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  background-image: url(../images/footer/tape.svg);
+
+  background-size: contain;
+  position: absolute;
+  bottom: -30px;
+}
+
+footer::before {
+  left: -50px;
+  transform: rotateZ(-10deg);
+}
+
+footer::after {
+  right: -50px;
+  transform: rotateZ(10deg);
 }
